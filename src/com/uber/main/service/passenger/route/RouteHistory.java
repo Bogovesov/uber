@@ -6,13 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 public class RouteHistory {
+    private Integer userId;
     private Map<Integer, List<Route>> routeHistory = new HashMap<>();
 
-    public List<Route> getRouteHistoryByUserId(Integer userId) {
+    public RouteHistory(Integer userId) {
+        this.userId = userId;
+    }
+
+    public List<Route> getRoutes() {
         return routeHistory.get(userId);
     }
 
-    public void addRouteToHistory(Integer userId, Route route) {
+    public void addRoute(Route route) {
         if (routeHistory.containsKey(userId)) {
             var routes = routeHistory.get(userId);
             if (route == null) {

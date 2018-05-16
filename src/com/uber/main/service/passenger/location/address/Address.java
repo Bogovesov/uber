@@ -8,6 +8,9 @@ public class Address {
     private City city;
     private Street street;
 
+    public Address() {
+    }
+
     public Address(Country country, State state, City city, Street street) {
         this.country = country;
         this.state = state;

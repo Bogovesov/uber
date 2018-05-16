@@ -3,6 +3,10 @@ package com.uber.main.service.passenger.location.address;
 public class State {
     private String name;
 
+    public State(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

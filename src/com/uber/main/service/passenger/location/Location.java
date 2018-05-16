@@ -1,12 +1,19 @@
 package com.uber.main.service.passenger.location;
 
 import com.uber.main.service.passenger.location.address.Address;
+import com.uber.main.service.passenger.location.address.City;
+import com.uber.main.service.passenger.location.address.State;
 import com.uber.main.service.passenger.location.geolocation.Geolocation;
+import com.uber.main.service.passenger.location.geolocation.Latitude;
+import com.uber.main.service.passenger.location.geolocation.Longitude;
+
+import java.util.Random;
 
 /**
- * Current location in different formats
+ * Location in different formats
  */
 public class Location {
+    private String name;
     private Address address;
     private Geolocation geolocation;
 
@@ -21,11 +28,12 @@ public class Location {
     }
 
     private Address getAddressByGeolocation(Geolocation geolocation) {
-        return null;
+        return new Address();
     }
 
     private Geolocation getGeolocationByAddress(Address address) {
-        return null;
+        Random random = new Random(100);
+        return new Geolocation(new Latitude(random.nextDouble()), new Longitude(random.nextDouble()));
     }
 
     public Address getAddress() {
@@ -42,5 +50,13 @@ public class Location {
 
     public void setGeolocation(Geolocation geolocation) {
         this.geolocation = geolocation;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

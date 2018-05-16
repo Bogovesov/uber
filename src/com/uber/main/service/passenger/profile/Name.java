@@ -1,9 +1,9 @@
-package com.uber.main.service.passenger.location.address;
+package com.uber.main.service.passenger.profile;
 
-public class City {
+public class Name {
     private String name;
 
-    public City(String name) {
+    public Name(String name) {
         this.name = name;
     }
 
