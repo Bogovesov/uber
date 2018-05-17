@@ -1,11 +1,14 @@
 package com.uber.main.service.passenger;
 
 import com.uber.main.service.passenger.account.Account;
+import com.uber.main.service.passenger.account.StandardAccount;
 import com.uber.main.service.passenger.location.Location;
 import com.uber.main.service.passenger.location.geolocation.Geolocation;
 import com.uber.main.service.passenger.location.geolocation.Latitude;
 import com.uber.main.service.passenger.location.geolocation.Longitude;
-import com.uber.main.service.passenger.rating.Rating;
+import com.uber.main.service.passenger.order.Order;
+import com.uber.main.service.passenger.order.OrderImpl;
+import com.uber.main.service.passenger.rating.RatingImpl;
 import com.uber.main.service.passenger.requirements.Requirements;
 import com.uber.main.service.passenger.route.Route;
 import com.uber.main.service.passenger.route.RouteHistory;
@@ -18,15 +21,24 @@ public class Passenger {
     private RouteHistory routeHistory;
     private Requirements requirements;
     private Location currentLocation;
-    private Rating rating;
+    private RatingImpl rating;
+    private Order order;
 
     public Passenger(Integer userId) {
         this.userId = userId;
         this.routeHistory = new RouteHistory(userId);
     }
 
+    public boolean addNewOrder(Route route, Requirements requirements) {
+        routeHistory.addRoute(route);
+        this.requirements = requirements;
+        order = new OrderImpl();
+        return true;
+    }
+
     private Location getCurrentLocationById(Integer userId) {
         if (currentLocation == null) {
+            // предпологается что координаты берутся откуда то из вне, возможно GPS Service,
             currentLocation = new Location(new Geolocation(new Latitude(49.979), new Longitude(36.2472)));
         }
         return currentLocation;
@@ -42,7 +54,7 @@ public class Passenger {
 
     private Account getAccountById(Integer userId) {
         if (account == null) {
-            account = new Account(userId);
+            account = new StandardAccount(userId);
         }
         return account;
     }
@@ -55,7 +67,7 @@ public class Passenger {
         return requirements;
     }
 
-    public Rating getRating() {
+    public RatingImpl getRating() {
         return rating;
     }
 }

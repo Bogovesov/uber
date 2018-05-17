@@ -1,4 +1,5 @@
 package com.uber.main.service.passenger.rating;
 
-public class Rating {
+public interface Rating {
+    int calc();
 }

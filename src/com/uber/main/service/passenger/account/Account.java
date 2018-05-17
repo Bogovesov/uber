@@ -1,5 +1,6 @@
 package com.uber.main.service.passenger.account;
 
+import com.uber.main.service.passenger.balance.Balance;
 import com.uber.main.service.passenger.location.Location;
 import com.uber.main.service.passenger.profile.Profile;
 import com.uber.main.service.passenger.route.Route;
@@ -7,16 +8,18 @@ import com.uber.main.service.passenger.route.Route;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Account {
+public abstract class Account {
     private Integer userId;
     private Profile profile;
     private AccountType type;
     private Bonus bonus;
     private List<Location> locationList;
     private List<Route> routeList; // saved routeList
+    private Balance balance;
 
-    public Account(Integer userId) {
+    protected Account(Integer userId, AccountType type) {
         this.userId = userId;
+        this.type = type;
     }
 
     private Bonus getAccountBonusById(Integer userId) {
@@ -24,10 +27,6 @@ public class Account {
             bonus = new Bonus();
         }
         return bonus;
-    }
-
-    private AccountType getAccountTypeById(Integer userId) {
-        return AccountType.STANDARD;
     }
 
     private List<Location> getAccountLocationById(Integer userId) {
@@ -64,7 +63,7 @@ public class Account {
     }
 
     public AccountType getType() {
-        return getAccountTypeById(userId);
+        return type;
     }
 
     public Bonus getBonus() {
@@ -84,4 +83,13 @@ public class Account {
         routeList = getRouteList();
         routeList.add(route);
     }
+
+    public Balance getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Balance balance) {
+        this.balance = balance;
+    }
+
 }
