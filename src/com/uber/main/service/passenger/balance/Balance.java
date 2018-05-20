@@ -1,5 +1,8 @@
 package com.uber.main.service.passenger.balance;
 
+/**
+ * Current user balance
+ */
 public class Balance {
     private Money money;
 

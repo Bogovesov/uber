@@ -6,19 +6,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Route {
-    private String date;
+    private String name;
+    private String dateCreated; //
     private Location startLocation;
     private List<Location> locations = new ArrayList<>();
 
-    public Route(Location startLocation, List<Location> locations) {
+    public Route(String name, Location startLocation, List<Location> locations) {
+        this.name = name;
         this.startLocation = startLocation;
         this.locations = locations;
-        this.date = CustomCurrentDate.getCurrentDate();
+        this.dateCreated = CustomCurrentDate.getCurrentDate();
+    }
+
+    public Route(String name, Location startLocation, Location finishLocation) {
+        this.name = name;
+        this.startLocation = startLocation;
+        locations.add(finishLocation);
+        this.dateCreated = CustomCurrentDate.getCurrentDate();
+    }
+
+    public Route(Location startLocation, List<Location> locations) {
+        this(" ", startLocation, locations);
     }
 
     public Route(Location startLocation, Location finishLocation) {
-        this.startLocation = startLocation;
-        locations.add(finishLocation);
+        this("", startLocation, finishLocation);
     }
 
     public Location getStartLocation() {
@@ -27,5 +39,13 @@ public class Route {
 
     public List<Location> getLocations() {
         return locations;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDateCreated() {
+        return dateCreated;
     }
 }

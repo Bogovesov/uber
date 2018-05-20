@@ -2,6 +2,7 @@ package com.uber.main.service.passenger;
 
 import com.uber.main.service.passenger.account.Account;
 import com.uber.main.service.passenger.account.StandardAccount;
+import com.uber.main.service.passenger.balance.Money;
 import com.uber.main.service.passenger.location.Location;
 import com.uber.main.service.passenger.location.geolocation.Geolocation;
 import com.uber.main.service.passenger.location.geolocation.Latitude;
@@ -36,9 +37,13 @@ public class Passenger {
         return true;
     }
 
+    public Money getPrice(Route route, Requirements requirements){
+        return null;
+    }
+
     private Location getCurrentLocationById(Integer userId) {
         if (currentLocation == null) {
-            // предпологается что координаты берутся откуда то из вне, возможно GPS Service,
+            // coordinates take from GPS service
             currentLocation = new Location(new Geolocation(new Latitude(49.979), new Longitude(36.2472)));
         }
         return currentLocation;
